@@ -1,29 +1,3 @@
-# from google.cloud import speech_v1 as speech
-
-
-# def speech_to_text(config, audio):
-#     client = speech.SpeechClient()
-#     response = client.recognize(config=config, audio=audio)
-#     print_sentences(response)
-
-
-# def print_sentences(response):
-#     for result in response.results:
-#         best_alternative = result.alternatives[0]
-#         transcript = best_alternative.transcript
-#         confidence = best_alternative.confidence
-#         print("-" * 80)
-#         print(f"Transcript: {transcript}")
-#         print(f"Confidence: {confidence:.0%}")
-
-
-# config = dict(language_code="en-US")
-# config.update(dict(enable_automatic_punctuation=True))
-
-# audio = dict(uri="gs://cloud-samples-data/speech/brooklyn_bridge.flac")
-
-# speech_to_text(config, audio)
-
 def transcribe_file(speech_file):
     """Transcribe the given audio file asynchronously."""
     from google.cloud import speech
@@ -58,11 +32,17 @@ def transcribe_file(speech_file):
         print(u"Transcript: {}".format(result.alternatives[0].transcript))
         print("Confidence: {}".format(result.alternatives[0].confidence))
 
-audio = "audio.flac"
-audio2 = "audio2.flac"
 
-transcribe_file(audio)
+def main():
+    audio = "audio.flac"
+    audio2 = "audio2.flac"
 
-print()
+    transcribe_file(audio)
 
-transcribe_file(audio2)
+    print()
+
+    transcribe_file(audio2)
+
+
+if __name__ == '__main__':
+    main()
